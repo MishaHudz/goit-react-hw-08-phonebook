@@ -6,14 +6,12 @@ import {
 } from './RegistrationPage.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { registrateUser } from 'store/operations';
-import { useNavigate } from 'react-router-dom';
 
 function RegistrationPage() {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
   const errorMessage = useSelector(state => state.auth.errorMessage);
 
@@ -25,9 +23,7 @@ function RegistrationPage() {
       email,
       password,
     };
-    dispatch(registrateUser(sendedObj))
-      .unwrap()
-      .then(() => navigate('/'));
+    dispatch(registrateUser(sendedObj));
   };
 
   return (

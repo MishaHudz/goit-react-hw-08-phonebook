@@ -8,6 +8,8 @@ import HomePage from 'pages/HomePage/HomePage';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { reconnectCurrentUser } from 'store/operations';
+import PrivateRoute from 'components/routes/PrivateRoute';
+import PublicRoute from './routes/PublicRoute';
 
 export function App() {
   const dispatch = useDispatch();
@@ -21,9 +23,30 @@ export function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/login" element={<LogInPage />} />
-          <Route path="/contacts" element={<ContactPage />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute path="/contacts">
+                <RegistrationPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute path="/contacts">
+                <LogInPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute path="/contacts">
+                <ContactPage />
+              </PrivateRoute>
+            }
+          />
         </Route>
       </Routes>
     </>
