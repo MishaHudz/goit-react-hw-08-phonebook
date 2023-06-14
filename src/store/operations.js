@@ -5,6 +5,7 @@ import {
   GetAllUserContactsApi,
   LogInUserApi,
   LogOutUserApi,
+  getReconnectedCurrentUserApi,
   registrationUserApi,
 } from 'services/usersPhonebook-api';
 
@@ -77,6 +78,24 @@ export const logOutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const data = await LogOutUserApi();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const reconnectCurrentUser = createAsyncThunk(
+  'auth/reconnectCurrenUser',
+  async (_, { rejectWithValue, getState }) => {
+    const token = getState().auth.token;
+
+    if (!token) {
+      return rejectWithValue('');
+    }
+
+    try {
+      const data = await getReconnectedCurrentUserApi(token);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

@@ -28,6 +28,7 @@ const usersSlice = createSlice({
           error: null,
         };
       })
+
       .addMatcher(
         action => {
           return action.type.endsWith('/pending');

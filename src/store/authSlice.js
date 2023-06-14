@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logOutUser, loginUser, registrateUser } from './operations';
+import {
+  logOutUser,
+  loginUser,
+  reconnectCurrentUser,
+  registrateUser,
+} from './operations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -38,6 +43,14 @@ const authSlice = createSlice({
         state.errorMessage = '';
       })
       .addCase(logOutUser.rejected, (state, { payload }) => {
+        state.errorMessage = payload;
+      })
+      .addCase(reconnectCurrentUser.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.isLoggedIn = true;
+        state.errorMessage = '';
+      })
+      .addCase(reconnectCurrentUser.rejected, (state, { payload }) => {
         state.errorMessage = payload;
       });
   },

@@ -42,3 +42,9 @@ export async function DeleteUserContactApi(contactId) {
   const { data } = await axios.delete(`/contacts/${contactId}`);
   return data;
 }
+
+export async function getReconnectedCurrentUserApi(savedToken) {
+  setHeadersToken(savedToken);
+  const { data } = await axios('/users/current');
+  return data;
+}
