@@ -7,11 +7,9 @@ import {
   ErrorMessage,
 } from './ContactForm.styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { customAlphabet } from 'nanoid';
+
 import { addContact } from 'store/operations';
 import { toast } from 'react-toastify';
-
-const nanoid = customAlphabet('1234567890', 10);
 
 export function ContactForm() {
   const [name, setName] = useState('');
@@ -29,7 +27,7 @@ export function ContactForm() {
       user => user.name.toLowerCase() === name.toLowerCase()
     );
     if (sameName.length === 0) {
-      dispatch(addContact({ name, number, id: nanoid() }));
+      dispatch(addContact({ name, number }));
       resetInputs();
     } else toast.warn(`${name} is already in contacts`);
   };

@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { LogInForm, LogInFormLabel, LogInSection } from './LogInPage.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'store/operations';
+import { useNavigate } from 'react-router-dom';
 
 function LogInPage() {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const errorMessage = useSelector(state => state.auth.errorMessage);
 
@@ -18,7 +20,9 @@ function LogInPage() {
       email,
       password,
     };
-    dispatch(loginUser(sendedObj));
+    dispatch(loginUser(sendedObj))
+      .unwrap()
+      .then(() => navigate('/'));
   };
 
   return (

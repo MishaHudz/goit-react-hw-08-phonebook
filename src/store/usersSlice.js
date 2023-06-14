@@ -9,44 +9,41 @@ const usersSlice = createSlice({
     error: null,
   },
 
-  extraReducers: {
-    [fetchContacts.pending]: state => {
-      return { ...state, isLoading: true };
-    },
-    [fetchContacts.fulfilled]: (_, { payload }) => {
-      return { items: payload, isLoading: false, error: null };
-    },
-    [fetchContacts.rejected]: (state, { payload }) => {
-      return { ...state, isLoading: false, error: payload };
-    },
-
-    [addContact.pending]: state => {
-      return { ...state, isLoading: true };
-    },
-    [addContact.fulfilled]: (state, { payload }) => {
-      return {
-        items: [...state.items, payload],
-        isLoading: false,
-        error: null,
-      };
-    },
-    [addContact.rejected]: (state, { payload }) => {
-      return { ...state, isLoading: false, error: payload };
-    },
-
-    [deleteContact.pending]: state => {
-      return { ...state, isLoading: true };
-    },
-    [deleteContact.fulfilled]: (state, { payload: { id } }) => {
-      return {
-        items: state.items.filter(user => user.id !== id),
-        isLoading: false,
-        error: null,
-      };
-    },
-    [deleteContact.rejected]: (state, { payload }) => {
-      return { ...state, isLoading: false, error: payload };
-    },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContacts.fulfilled, (_, { payload }) => {
+        return { items: payload, isLoading: false, error: null };
+      })
+      .addCase(addContact.fulfilled, (state, { payload }) => {
+        return {
+          items: [...state.items, payload],
+          isLoading: false,
+          error: null,
+        };
+      })
+      .addCase(deleteContact.fulfilled, (state, { payload }) => {
+        return {
+          items: state.items.filter(user => user.id !== payload.id),
+          isLoading: false,
+          error: null,
+        };
+      })
+      .addMatcher(
+        action => {
+          return action.type.endsWith('/pending');
+        },
+        state => {
+          return { ...state, isLoading: true };
+        }
+      )
+      .addMatcher(
+        action => {
+          return action.type.endsWith('/rejected');
+        },
+        (state, { payload }) => {
+          return { ...state, isLoading: false, error: payload };
+        }
+      );
   },
 });
 
