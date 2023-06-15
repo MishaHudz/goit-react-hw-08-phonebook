@@ -16,9 +16,11 @@ export function ContactList() {
   const filter = useSelector(state => state.filter);
   const loader = useSelector(state => state.contacts.isLoading);
 
+  const isUserExist = useSelector(state => Boolean(state.auth.user.email));
+
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    if (isUserExist) dispatch(fetchContacts());
+  }, [dispatch, isUserExist]);
 
   const contacts = useSelector(state => state.contacts.items);
 

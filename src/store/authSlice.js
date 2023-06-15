@@ -40,12 +40,14 @@ const authSlice = createSlice({
         state.errorMessage = '';
         state.isLoading = false;
       })
+
       .addCase(reconnectCurrentUser.fulfilled, (state, { payload }) => {
         state.user = payload;
         state.isLoggedIn = true;
         state.errorMessage = '';
         state.isLoading = false;
       })
+
       .addMatcher(
         action => {
           return action.type.endsWith('/pending');
