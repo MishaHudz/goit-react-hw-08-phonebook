@@ -10,7 +10,7 @@ export const LogNavList = styled.ul`
 
 export const LogNavLink = styled(NavLink)`
   font-weight: 700;
-  color: #1e1823;
+  color: white;
 
   &.active {
     color: #fd9222;

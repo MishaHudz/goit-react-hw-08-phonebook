@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { AuthorizedUresContainer, UresPhoto } from './AuthorizedUser.styles';
+import {
+  AuthorizedUresContainer,
+  LogOutBtn,
+  UresPhoto,
+} from './AuthorizedUser.styles';
 import { logOutUser } from 'store/operations';
 
 const defaultUserImg =
@@ -22,9 +26,9 @@ function AuthorizedUser() {
         height="55px"
       />
       <p>{userName}</p>
-      <button type="button" onClick={onLogOutBtnClick}>
+      <LogOutBtn type="button" onClick={onLogOutBtnClick}>
         Log out
-      </button>
+      </LogOutBtn>
     </AuthorizedUresContainer>
   );
 }

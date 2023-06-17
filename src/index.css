@@ -32,3 +32,12 @@ ul {
 a {
   text-decoration: none;
 }
+
+body {
+  background: rgb(125, 91, 54);
+  background: linear-gradient(
+    87deg,
+    rgba(125, 91, 54, 1) 0%,
+    rgba(253, 183, 109, 1) 67%
+  );
+}

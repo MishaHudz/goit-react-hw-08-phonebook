@@ -10,7 +10,7 @@ export const MainNavList = styled.ul`
 
 export const MainNavLink = styled(NavLink)`
   font-weight: 700;
-  color: #1e1823;
+  color: white;
 
   &.active {
     color: #fd9222;

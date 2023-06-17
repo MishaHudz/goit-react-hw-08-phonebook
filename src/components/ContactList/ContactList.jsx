@@ -5,6 +5,11 @@ import {
   ContactItem,
   Delete,
   Loader,
+  ContactContainer,
+  NumberInfo,
+  DinamickNameInfo,
+  DinamickNameInfoContainer,
+  NumberContaoner,
 } from './ContactList.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -33,7 +38,17 @@ export function ContactList() {
       <ContactsListStyle>
         {filteredContacts.map(contact => (
           <ContactItem key={contact?.id}>
-            {contact?.name} <span>{contact?.number} </span>
+            <ContactContainer>
+              <NumberInfo>
+                Name:
+                <DinamickNameInfoContainer>
+                  <DinamickNameInfo>{contact?.name}</DinamickNameInfo>
+                </DinamickNameInfoContainer>
+              </NumberInfo>
+              <NumberInfo>
+                Number: <NumberContaoner>{contact?.number}</NumberContaoner>{' '}
+              </NumberInfo>
+            </ContactContainer>
             <Delete onClick={() => dispatch(deleteContact(contact?.id))}>
               Delete
             </Delete>
