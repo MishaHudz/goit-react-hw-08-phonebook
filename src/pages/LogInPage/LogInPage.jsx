@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { LogInForm, LogInFormLabel, LogInSection } from './LogInPage.styles';
+import {
+  LogInBtn,
+  LogInForm,
+  LogInFormLabel,
+  LogInPageInput,
+  LogInSection,
+} from './LogInPage.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from 'store/operations';
 
@@ -23,11 +29,10 @@ function LogInPage() {
 
   return (
     <LogInSection>
-      <h2>Log in page</h2>
-      <LogInForm action="" onSubmit={onFormSubmit}>
+      <LogInForm onSubmit={onFormSubmit}>
         <LogInFormLabel>
           Email
-          <input
+          <LogInPageInput
             type="email"
             value={email}
             onChange={({ target: { value } }) => setEmail(value)}
@@ -35,14 +40,14 @@ function LogInPage() {
         </LogInFormLabel>
         <LogInFormLabel>
           Password
-          <input
+          <LogInPageInput
             type="password"
             value={password}
             onChange={({ target: { value } }) => setPassword(value)}
           />
         </LogInFormLabel>
-        {errorMessage && <p>Incorrect email or password</p>}
-        <button>Log in</button>
+        {errorMessage && <p>Incorrect email or password!</p>}
+        <LogInBtn>Log in</LogInBtn>
       </LogInForm>
     </LogInSection>
   );

@@ -2,9 +2,15 @@ import styled from 'styled-components';
 
 export const FilterLabel = styled.label`
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  gap: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    gap: 24px;
+    flex-direction: row;
+  }
 `;
 
 export const FilterInput = styled.input`

@@ -46,7 +46,7 @@ export function ContactList() {
                 </DinamickNameInfoContainer>
               </NumberInfo>
               <NumberInfo>
-                Number: <NumberContaoner>{contact?.number}</NumberContaoner>{' '}
+                Number: <NumberContaoner>{contact?.number}</NumberContaoner>
               </NumberInfo>
             </ContactContainer>
             <Delete onClick={() => dispatch(deleteContact(contact?.id))}>

@@ -15,10 +15,30 @@ export const ContactItem = styled.li`
   color: white;
   background-color: #1e1823;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   row-gap: 10px;
+
+  @media (min-width: 768px) {
+    gap: 24px;
+    flex-direction: row;
+  }
+
+  opacity: 0;
+  transform: scale(0);
+  animation: scale-in 0.8s ease-in-out forwards;
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 `;
 
 export const Delete = styled.button`
@@ -29,11 +49,14 @@ export const Delete = styled.button`
 
   border-radius: 25px;
   padding: 5px 10px;
-  margin-left: 10px;
 
   &:hover {
     background-color: #fcf1e0;
     color: #fd9222;
+  }
+
+  @media (min-width: 768px) {
+    margin-left: 10px;
   }
 `;
 
