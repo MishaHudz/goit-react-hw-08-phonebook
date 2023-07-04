@@ -17,7 +17,4 @@ export const Header = styled.header`
   }
 `;
 
-export const Main = styled.main`
-  padding-top: 60px;
-  /* padding-left: 30px; */
-`;
+export const Main = styled.main``;

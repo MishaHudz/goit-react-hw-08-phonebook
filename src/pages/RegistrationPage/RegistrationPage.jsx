@@ -2,10 +2,12 @@ import { useState } from 'react';
 import {
   RegistrationForm,
   RegistrationFormLabel,
+  RegistrationPageInput,
   RegistrationSection,
 } from './RegistrationPage.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { registrateUser } from 'store/operations';
+import { LogInBtn } from 'pages/LogInPage/LogInPage.styles';
 
 function RegistrationPage() {
   const dispatch = useDispatch();
@@ -28,21 +30,22 @@ function RegistrationPage() {
 
   return (
     <RegistrationSection>
-      <h2>Registration page</h2>
       <RegistrationForm action="" onSubmit={onFormSubmit}>
         <RegistrationFormLabel>
           Name
-          <input
+          <RegistrationPageInput
             type="text"
             name="name"
+            required
             value={name}
             onChange={({ target: { value } }) => setName(value)}
           />
         </RegistrationFormLabel>
         <RegistrationFormLabel>
           Email
-          <input
+          <RegistrationPageInput
             type="email"
+            required
             name="email"
             value={email}
             onChange={({ target: { value } }) => setEmail(value)}
@@ -50,15 +53,16 @@ function RegistrationPage() {
         </RegistrationFormLabel>
         <RegistrationFormLabel>
           Password
-          <input
+          <RegistrationPageInput
             type="password"
+            required
             name="password"
             value={password}
             onChange={({ target: { value } }) => setPassword(value)}
           />
         </RegistrationFormLabel>
-        {errorMessage && <p>This user already exist</p>}
-        <button>Registration</button>
+        {errorMessage.registration && <p>This user already exist</p>}
+        <LogInBtn>Registration</LogInBtn>
       </RegistrationForm>
     </RegistrationSection>
   );

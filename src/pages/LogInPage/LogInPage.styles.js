@@ -6,6 +6,8 @@ export const LogInSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  padding-top: 60px;
   margin: 0 auto;
   @media (min-width: 768px) {
     width: 500px;
@@ -54,7 +56,7 @@ export const LogInFormLabel = styled.label`
   @media (min-width: 768px) {
     justify-content: flex-end;
     flex-direction: row;
-    gap: 5px;
+    gap: 15px;
   }
 `;
 
@@ -64,10 +66,6 @@ export const LogInPageInput = styled.input`
   padding: 5px 15px;
   background-color: transparent;
   color: white;
-
-  @media (min-width: 768px) {
-    margin-left: 10px;
-  }
 `;
 
 export const LogInBtn = styled.button`

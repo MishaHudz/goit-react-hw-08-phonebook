@@ -35,6 +35,7 @@ function LogInPage() {
           <LogInPageInput
             type="email"
             value={email}
+            required
             onChange={({ target: { value } }) => setEmail(value)}
           />
         </LogInFormLabel>
@@ -43,10 +44,11 @@ function LogInPage() {
           <LogInPageInput
             type="password"
             value={password}
+            required
             onChange={({ target: { value } }) => setPassword(value)}
           />
         </LogInFormLabel>
-        {errorMessage && <p>Incorrect email or password!</p>}
+        {errorMessage.login && <p>Incorrect email or password!</p>}
         <LogInBtn>Log in</LogInBtn>
       </LogInForm>
     </LogInSection>
