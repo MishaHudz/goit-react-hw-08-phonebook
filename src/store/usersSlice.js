@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContact, deleteContact, fetchContacts } from './operations';
+import {
+  addContact,
+  deleteContact,
+  fetchContacts,
+  updateContact,
+} from './operations';
 
 const usersSlice = createSlice({
   name: 'users',
@@ -28,7 +33,16 @@ const usersSlice = createSlice({
           error: null,
         };
       })
-
+      .addCase(updateContact.fulfilled, (state, { payload }) => {
+        return {
+          items: state.items.map(contact => {
+            if (contact.id === payload.id) return payload;
+            return contact;
+          }),
+          isLoading: false,
+          error: null,
+        };
+      })
       .addMatcher(
         action => {
           return action.type.endsWith('/pending');

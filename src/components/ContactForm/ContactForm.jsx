@@ -83,8 +83,6 @@ export function ContactForm() {
         <Input
           type="tel"
           name="number"
-          // placeholder="123-45-678"
-          // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onChange={handleChange}

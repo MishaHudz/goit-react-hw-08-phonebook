@@ -6,6 +6,7 @@ import {
   LogInUserApi,
   LogOutUserApi,
   getReconnectedCurrentUserApi,
+  patchCurrentUserInfoApi,
   registrationUserApi,
 } from 'services/usersPhonebook-api';
 
@@ -38,6 +39,21 @@ export const deleteContact = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const data = await DeleteUserContactApi(id);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateContact = createAsyncThunk(
+  'contacts/updateContact',
+  async (newInfo, { rejectWithValue }) => {
+    try {
+      const data = await patchCurrentUserInfoApi(newInfo.id, {
+        name: newInfo.name,
+        number: newInfo.number,
+      });
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

@@ -1,19 +1,10 @@
 import 'react-toastify/dist/ReactToastify.css';
-import { deleteContact, fetchContacts } from 'store/operations';
-import {
-  ContactsListStyle,
-  ContactItem,
-  Delete,
-  Loader,
-  ContactContainer,
-  NumberInfo,
-  DinamickNameInfo,
-  DinamickNameInfoContainer,
-  NumberContaoner,
-} from './ContactList.style';
+import { fetchContacts } from 'store/operations';
+import { ContactsListStyle, Loader } from './ContactList.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
+import { ContactItem } from 'components/ContactItem/ContactItem';
 
 export function ContactList() {
   const dispatch = useDispatch();
@@ -36,36 +27,21 @@ export function ContactList() {
   return (
     <>
       <ContactsListStyle>
+        {loader && (
+          <Loader>
+            <ThreeDots
+              height="40"
+              width="40"
+              radius="9"
+              color="#1e1823"
+              visible={true}
+            />
+          </Loader>
+        )}
         {filteredContacts.map(contact => (
-          <ContactItem key={contact?.id}>
-            <ContactContainer>
-              <NumberInfo>
-                Name:
-                <DinamickNameInfoContainer>
-                  <DinamickNameInfo>{contact?.name}</DinamickNameInfo>
-                </DinamickNameInfoContainer>
-              </NumberInfo>
-              <NumberInfo>
-                Number: <NumberContaoner>{contact?.number}</NumberContaoner>
-              </NumberInfo>
-            </ContactContainer>
-            <Delete onClick={() => dispatch(deleteContact(contact?.id))}>
-              Delete
-            </Delete>
-          </ContactItem>
+          <ContactItem key={contact.id} contact={contact}></ContactItem>
         ))}
       </ContactsListStyle>
-      {loader && (
-        <Loader>
-          <ThreeDots
-            height="40"
-            width="40"
-            radius="9"
-            color="#fd9222"
-            visible={true}
-          />
-        </Loader>
-      )}
     </>
   );
 }

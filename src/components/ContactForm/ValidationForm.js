@@ -2,10 +2,12 @@ import validator from 'validator';
 import Inputmask from 'inputmask';
 
 export function InputNumberMask() {
-  const telInput = document.querySelector(`input[type='tel']`);
-  if (telInput) {
+  const telInput = document.querySelectorAll(`input[type='tel']`);
+
+  if (telInput && telInput.length) {
     const telInputMask = new Inputmask(`+380(99) 999-99-99`);
-    telInputMask.mask(telInput);
+
+    telInput.forEach(input => telInputMask.mask(input));
   }
 }
 

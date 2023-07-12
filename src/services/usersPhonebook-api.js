@@ -43,6 +43,11 @@ export async function DeleteUserContactApi(contactId) {
   return data;
 }
 
+export async function patchCurrentUserInfoApi(id, newInfo) {
+  const { data } = await axios.patch(`/contacts/${id}`, newInfo);
+  return data;
+}
+
 export async function getReconnectedCurrentUserApi(savedToken) {
   setHeadersToken(savedToken);
   const { data } = await axios('/users/current');
