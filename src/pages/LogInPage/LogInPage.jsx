@@ -45,7 +45,7 @@ function LogInPage() {
             type="password"
             value={password}
             required
-            onChange={({ target: { value } }) => setPassword(value)}
+            onChange={({ target: { value } }) => setPassword(value.trim())}
           />
         </LogInFormLabel>
         {errorMessage.login && <p>Incorrect email or password!</p>}
